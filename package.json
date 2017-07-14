@@ -1,6 +1,6 @@
 {
   "name": "react-typestyle",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A react integration of the TypeStyle ecosystem",
   "keywords": [
     "react",
@@ -13,19 +13,22 @@
     "free-style",
     "js"
   ],
-  "homepage": "https://unithing.co",
+  "homepage": "https://github.com/Malpaux/react-typestyle#readme",
   "bugs": {
-    "url": "https://bitbucket.org/utng/ui/issues"
+    "url": "https://github.com/Malpaux/react-typestyle/issues"
   },
   "license": "BSD-3-Clause",
-  "author": "Unithing (unithing.co)",
+  "author": "Malpaux (malpaux.com)",
   "contributors": [
     {
       "name": "Paul Brachmann",
       "email": "paul.brachmann@malpaux.com"
     }
   ],
-  "repository": "bitbucket.org:utng/ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Malpaux/react-typestyle.git"
+  },
   "scripts": {
     "build": "tsc -p . -d",
     "clean": "rimraf dist",
