@@ -1,0 +1,73 @@
+{
+  "name": "react-typestyle",
+  "version": "0.1.0",
+  "description": "A react integration of the TypeStyle ecosystem",
+  "keywords": [
+    "react",
+    "inline",
+    "css",
+    "style",
+    "typestyle",
+    "types",
+    "typescript",
+    "free-style",
+    "js"
+  ],
+  "homepage": "https://unithing.co",
+  "bugs": {
+    "url": "https://bitbucket.org/utng/ui/issues"
+  },
+  "license": "BSD-3-Clause",
+  "author": "Unithing (unithing.co)",
+  "contributors": [
+    {
+      "name": "Paul Brachmann",
+      "email": "paul.brachmann@malpaux.com"
+    }
+  ],
+  "repository": "bitbucket.org:utng/ui",
+  "scripts": {
+    "build": "tsc -p . -d",
+    "clean": "rimraf dist",
+    "lint": "tslint --project tsconfig.json",
+    "lint:fix": "tslint --project tsconfig.json --fix",
+    "test": "jest --env=jsdom"
+  },
+  "dependencies": {
+    "free-style": "^2.3.1",
+    "rimraf": "^2.6.1",
+    "typestyle": "^1.3.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.2",
+    "@types/react": "^15.0.38",
+    "jest": "^20.0.4",
+    "ts-jest": "^20.0.7",
+    "tslint": "^5.5.0",
+    "tslint-config-airbnb": "^5.2.1",
+    "tslint-react": "^3.0.0",
+    "typescript": "^2.4.1"
+  },
+  "peerDependencies": {
+    "react": "^15.6.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/(build|dist|docs|node_modules)/"
+    ],
+    "testEnvironment": "node"
+  }
+}
