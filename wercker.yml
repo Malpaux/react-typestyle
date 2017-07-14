@@ -14,7 +14,7 @@ build:
     - script:
       name: install dependencies
       code: |
-        HOME=$YARN_CACHE yarn
+        HOME=$YARN_CACHE yarn && npm install react
 
     # Check code & build
     - script:
@@ -32,7 +32,7 @@ build:
         HOME=$YARN_CACHE yarn --prod
     - script:
       name: copy build
-      code: cp -a dist/. package.json yarn.lock node_modules LICENSE README.md "$WERCKER_OUTPUT_DIR"
+      code: cp -a dist/. package.json yarn.lock LICENSE README.md "$WERCKER_OUTPUT_DIR"
 
 deploy:
   steps:
