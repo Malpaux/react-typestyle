@@ -42,6 +42,7 @@
     "@types/jest": "^20.0.2",
     "@types/react": "^15.0.38",
     "jest": "^20.0.4",
+    "react": "^15.6.1",
     "ts-jest": "^20.0.7",
     "tslint": "^5.5.0",
     "tslint-config-airbnb": "^5.2.1",
