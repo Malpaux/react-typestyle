@@ -5,16 +5,16 @@ build:
     # Install yarn & project dependencies
     - script:
       name: install yarn
-      code: |
-        npm install -g yarn
+      code: npm install -g yarn
     - script:
       name: set yarn cache
-      code: |
-        export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
+      code: export YARN_CACHE=$WERCKER_CACHE_DIR/yarn
     - script:
       name: install dependencies
-      code: |
-        HOME=$YARN_CACHE yarn && npm install react
+      code: HOME=$YARN_CACHE yarn
+    - script:
+      name: install peer dependencies
+      code: npm install react
 
     # Check code & build
     - script:
@@ -28,8 +28,7 @@ build:
     # Clean-up & pass to deploy pipeline
     - script:
       name: cleanup dev dependencies
-      code: |
-        HOME=$YARN_CACHE yarn --prod
+      code: HOME=$YARN_CACHE yarn --prod
     - script:
       name: copy build
       code: cp -a dist/. package.json yarn.lock LICENSE README.md "$WERCKER_OUTPUT_DIR"
