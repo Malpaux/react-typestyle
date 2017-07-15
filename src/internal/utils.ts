@@ -5,7 +5,16 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
-import { DynamicSheet, Plugin, StaticSheet, XDynamicSheet } from '../types';
+import { extend } from 'typestyle/lib/internal/utilities';
+
+import {
+  DynamicSheet,
+  Plugin,
+  StaticSheet,
+  StaticStyle,
+  StyleGenerator,
+  XDynamicSheet,
+} from '../types';
 
 /** Shallowly compare two objects */
 export const shallowCompare = (
@@ -16,6 +25,38 @@ export const shallowCompare = (
   for (i in a) if (!(i in b)) return true;
   for (i in b) if (a[i] !== b[i]) return true;
   return false;
+};
+
+/** Dynamically extend dynamic styles */
+export const dynamicExtend = <P>(
+  ...objects: (StaticStyle | StyleGenerator<P>)[],
+): StaticStyle | StyleGenerator<P> => {
+  const staticStyles: StaticStyle[] = [];
+  let dynamicStyles: StyleGenerator<P>[] | undefined;
+
+  // Split dynamic/static styles
+  objects.forEach((style) => {
+    if (typeof style === 'function') {
+      if (!dynamicStyles) dynamicStyles = [];
+      dynamicStyles.push(style);
+    } else {
+      staticStyles.push(style);
+    }
+  });
+
+  // Dynamic styles reqire dynamic extend
+  if (dynamicStyles) {
+    return (props: P) => {
+      // Evaluate & merge dynamic w/ static styles
+      return extend(
+        ...staticStyles,
+        ...((dynamicStyles as StyleGenerator<P>[]).map((style) => style(props))),
+      );
+    };
+  }
+
+  // Default static extend
+  return extend(...staticStyles);
 };
 
 /** Process a style with a number of plugins */

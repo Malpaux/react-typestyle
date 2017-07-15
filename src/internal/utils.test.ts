@@ -1,9 +1,9 @@
 import 'jest';
 
-import { DynamicSheet, StaticStyle } from '../types';
-import { processPlugins, shallowCompare, splitSheet } from './utils';
+import { DynamicSheet, StaticStyle, StyleGenerator } from '../types';
+import { dynamicExtend, processPlugins, shallowCompare, splitSheet } from './utils';
 
-describe('react-typestyle utils', () => {
+describe('utilities', () => {
   it('should shallowly compare two object', () => {
     expect(shallowCompare(
       { key1: 1, key2: 'string' },
@@ -24,6 +24,26 @@ describe('react-typestyle utils', () => {
       { key1: 1 },
       { key1: 1, key2: 'string' },
     )).toBe(true);
+  });
+
+  it('should dynamically extend dynamic styles', () => {
+    expect(dynamicExtend()).toEqual({});
+    expect(dynamicExtend({})).toEqual({});
+    expect(dynamicExtend({}, {}, {})).toEqual({});
+    expect((dynamicExtend({}, () => ({}), {}) as StyleGenerator<{}>)({})).toEqual({});
+
+    expect((dynamicExtend({ color: '#fff' }, { background: '#000' }))).toEqual({
+      background: '#000',
+      color: '#fff',
+    });
+
+    expect(((dynamicExtend(
+      ({ background }) => ({ background }),
+      { color: '#fff' },
+    )) as StyleGenerator<{ background: string }>)({ background: '#f00' })).toEqual({
+      background: '#f00',
+      color: '#fff',
+    });
   });
 
   it('should process a style with a number of plugins', () => {

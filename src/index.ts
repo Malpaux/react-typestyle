@@ -8,9 +8,9 @@ import Cache from './internal/cache';
 import hoc, { ComponentOptions, InjectedProps, InputSheet, Options } from './internal/hoc';
 import Registry from './internal/registry';
 import Renderer from './internal/renderer';
-import { shallowCompare } from './internal/utils';
+import { dynamicExtend, shallowCompare } from './internal/utils';
 
-export { Cache, Registry, Renderer, shallowCompare };
+export { Cache, dynamicExtend, Registry, Renderer, shallowCompare };
 
 import * as types from './types';
 export { ComponentOptions, InjectedProps, InputSheet, Options, types };
