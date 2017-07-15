@@ -5,13 +5,13 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
+import { types } from 'typestyle';
 import { extend } from 'typestyle/lib/internal/utilities';
 
 import {
   DynamicSheet,
   Plugin,
   StaticSheet,
-  StaticStyle,
   StyleGenerator,
   XDynamicSheet,
 } from '../types';
@@ -29,9 +29,9 @@ export const shallowCompare = (
 
 /** Dynamically extend dynamic styles */
 export const dynamicExtend = <P>(
-  ...objects: (StaticStyle | StyleGenerator<P>)[],
-): StaticStyle | StyleGenerator<P> => {
-  const staticStyles: StaticStyle[] = [];
+  ...objects: (types.NestedCSSProperties | StyleGenerator<P>)[],
+): types.NestedCSSProperties | StyleGenerator<P> => {
+  const staticStyles: types.NestedCSSProperties[] = [];
   let dynamicStyles: StyleGenerator<P>[] | undefined;
 
   // Split dynamic/static styles
