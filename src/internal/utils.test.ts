@@ -1,5 +1,5 @@
 import { DynamicSheet, StaticStyle, StyleGenerator } from '../types';
-import { dynamicExtend, processPlugins, shallowCompare, splitSheet } from './utils';
+import { dynamicExtend, processPlugins, processSheet, shallowCompare, splitSheet } from './utils';
 
 describe('utilities', () => {
   it('should shallowly compare two object', () => {
@@ -149,5 +149,52 @@ describe('utilities', () => {
         },
       },
     });
+  });
+
+  it('should evaluate & process a style sheet', () => {
+    const processor = jest.fn((style: StaticStyle) => style);
+
+    interface Props {
+      bg: string;
+      color: string;
+    }
+
+    const sheet: DynamicSheet<Props> = {
+      button: (props) => ({
+        background: props.bg,
+        color: props.color,
+        position: 'relative',
+      }),
+      disabled: {
+        border: 'none',
+      },
+      div: () => ({
+        border: undefined,
+        boxSizing: 'border-box',
+        padding: 24,
+        position: 'absolute',
+        top: 0,
+      }),
+    };
+
+    expect(processSheet(processor, sheet, { bg: '#000', color: '#fff' })).toEqual({
+      button: {
+        background: '#000',
+        color: '#fff',
+        position: 'relative',
+      },
+      disabled: {
+        border: 'none',
+      },
+      div: {
+        boxSizing: 'border-box',
+        padding: 24,
+        position: 'absolute',
+        top: 0,
+      },
+    });
+    expect(processor).toHaveBeenCalledTimes(3);
+
+    // TODO: More elaborate test case(s)
   });
 });

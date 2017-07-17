@@ -96,3 +96,24 @@ export const splitSheet = <P>(sheet: DynamicSheet<P>): {
 
   return { dynamic: dynamicSheet, static: staticSheet };
 };
+
+/** Evaluate & process a style sheet */
+export const processSheet = <P, R>(
+  processor: (style: Partial<types.NestedCSSProperties>, props: P) => R,
+  sheet: DynamicSheet<P>,
+  props: P,
+  result: { [name: string]: R } = {},
+): { [name: string]: R } => {
+  // Evaluate dynamic styles & execute processor
+  Object.keys(sheet).forEach((name) => {
+    const style = sheet[name];
+    result[name] = processor(
+      typeof style === 'function' ?
+        style(props)
+      : style,
+      props,
+    );
+  });
+
+  return result;
+};

@@ -9,7 +9,7 @@ import { create as createFreeStyle } from 'free-style';
 
 import { ClassNames, DynamicSheet, SheetGenerator, XDynamicSheet } from '../types';
 import Registry, { Options as RegistryOptions } from './registry';
-import { splitSheet } from './utils';
+import { processSheet, splitSheet } from './utils';
 
 /** The react-typestyle styles cache */
 class Cache<P> extends Registry {
@@ -70,7 +70,6 @@ class Cache<P> extends Registry {
   /** Render dynamic styles & get all class names */
   public render(props: P): ClassNames {
     const patch = createFreeStyle(undefined, true);
-    const classNames: ClassNames = { ...this.classNames };
 
     // Build dynamic sheet
     const dynamicSheet = this.dynamicSheets ?
@@ -84,16 +83,12 @@ class Cache<P> extends Registry {
     : this.dynamicStyles;
 
     // Evaluate dynamic styles & generate class names
-    Object.keys(dynamicSheet).forEach((name) => {
-      const style = dynamicSheet[name];
-      classNames[name] = this.registerStyle(
-        patch,
-        typeof style === 'function' ?
-          style(props)
-        : style,
-        props,
-      );
-    });
+    const classNames = processSheet(
+      this.registerStyle.bind(this, patch),
+      dynamicSheet,
+      props,
+      { ...this.classNames },
+    );
 
     // Update styles
     this.dynamicRegistry.clear().update(patch);

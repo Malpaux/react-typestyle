@@ -86,6 +86,8 @@ describe('withStyles higher-order component', () => {
     const classNames2 = component.setProps({
       color: '#ff0000', pos: { x: 128, y: 0 },
     }).prop('classNames');
+    expect(component.prop('color')).toBe('#ff0000');
+    expect(component.prop('pos')).toEqual({ x: 128, y: 0 });
     expect(classNames2).toHaveProperty('div');
     expect(classNames2).toHaveProperty('root');
     expect(classNames2.root).toBe(classNames.root);

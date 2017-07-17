@@ -13,10 +13,9 @@ import {
   Plugin,
   StaticSheet,
   StaticStyle,
+  updateListener,
 } from '../types';
 import { processPlugins } from './utils';
-
-export type updateListener = (patch: FreeStyle, subtractive?: boolean) => void;
 
 export interface Options { plugins?: Plugin[]; }
 
