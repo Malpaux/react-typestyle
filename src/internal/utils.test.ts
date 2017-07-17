@@ -1,5 +1,3 @@
-import 'jest';
-
 import { DynamicSheet, StaticStyle, StyleGenerator } from '../types';
 import { dynamicExtend, processPlugins, shallowCompare, splitSheet } from './utils';
 

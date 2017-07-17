@@ -29,9 +29,9 @@ export const shallowCompare = (
 
 /** Dynamically extend dynamic styles */
 export const dynamicExtend = <P>(
-  ...objects: (types.NestedCSSProperties | StyleGenerator<P>)[],
-): types.NestedCSSProperties | StyleGenerator<P> => {
-  const staticStyles: types.NestedCSSProperties[] = [];
+  ...objects: (Partial<types.NestedCSSProperties> | StyleGenerator<P>)[],
+): Partial<types.NestedCSSProperties> | StyleGenerator<P> => {
+  const staticStyles: Partial<types.NestedCSSProperties>[] = [];
   let dynamicStyles: StyleGenerator<P>[] | undefined;
 
   // Split dynamic/static styles

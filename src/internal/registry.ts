@@ -71,6 +71,7 @@ class Registry {
     return this;
   }
 
+  /** Take a static style sheet and return generated class names */
   public sheet(object: StaticSheet): ClassNames {
     const patch = createFreeStyle(undefined, true);
     const classNames: ClassNames = {};
@@ -84,7 +85,7 @@ class Registry {
     return classNames;
   }
 
-  /** Takes CSSProperties and return a generated className you can use on your component */
+  /** Take CSS properties and return a generated class name */
   public style(object: StaticStyle): string {
     const patch = createFreeStyle(undefined, true);
     const className = this.registerStyle(patch, object);
@@ -104,7 +105,7 @@ class Registry {
     registry.off(this.update);
 
     // Remove styles
-    registry.update(this.freeStyle, true);
+    this.update(registry.freeStyle, true);
     return this;
   }
 

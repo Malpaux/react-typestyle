@@ -3,8 +3,6 @@
  * import the entire lib for coverage reporting
  */
 
-import 'jest';
-
 import * as lib from './';
 
 describe('Entry point', () => {

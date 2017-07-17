@@ -32,7 +32,7 @@ export interface ComponentOptions<P> {
   styles?: InputSheet<P>;
 }
 
-export interface StyledStatelessComponent<P> extends React.StatelessComponent<P> {
+export interface StyledStatelessComponent<P = {}> extends React.StatelessComponent<P> {
   styles?: InputSheet<Readonly<P>>;
 }
 
@@ -53,7 +53,7 @@ const hoc = ({ plugins, renderer, shouldStylesUpdate }: Options) =>
       public static defaultProps = Component.defaultProps;
       public static propTypes = Component.propTypes;
 
-      public classNames: ClassNames = {};
+      public classNames: ClassNames;
       public registry = new Cache<ResultProps>({ plugins }).register(sheet);
 
       /** Handle style sheet attach */
