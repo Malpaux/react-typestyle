@@ -5,7 +5,7 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
-import React from 'react';
+import * as React from 'react';
 
 import {
   ClassNames,
