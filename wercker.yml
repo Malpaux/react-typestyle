@@ -24,9 +24,6 @@ build:
 
     # Clean-up & pass to deploy pipeline
     - script:
-      name: cleanup dev dependencies
-      code: HOME=$YARN_CACHE yarn --prod
-    - script:
       name: copy build
       code: cp -a dist/. package.json yarn.lock LICENSE README.md "$WERCKER_OUTPUT_DIR"
 

@@ -98,8 +98,6 @@ describe('withStyles higher-order component', () => {
     expect(renderer.getStyles()).toBe('');
   });
 
-  // TODO: Test custom renderer setups
-
   // TODO: Test custom shouldStylesUpdate functions
 
   // TODO: Test custom plugins
