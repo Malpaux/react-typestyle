@@ -41,10 +41,10 @@ const hoc = ({ plugins, renderer, shouldStylesUpdate }: Options) =>
   <OriginalProps extends {}>(
     Component: ((React.ComponentClass<OriginalProps & InjectedProps>
       | React.StatelessComponent<OriginalProps & InjectedProps>)
-    & { styles?: InputSheet<OriginalProps> }),
-    componentOptions: ComponentOptions<OriginalProps> = {},
+    & { styles?: InputSheet<Readonly<OriginalProps>> }),
+    componentOptions: ComponentOptions<Readonly<OriginalProps>> = {},
   ) => {
-    type ResultProps = OriginalProps;
+    type ResultProps = Readonly<OriginalProps>;
 
     // Get sheet
     const sheet: InputSheet<ResultProps> | undefined = componentOptions.styles || Component.styles;
