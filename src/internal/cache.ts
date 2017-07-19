@@ -1,6 +1,6 @@
 /**
  * The react-typestyle styles cache
- * @module react-typestyle/internal/renderer
+ * @module react-typestyle/internal/cache
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */

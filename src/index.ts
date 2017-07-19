@@ -4,6 +4,13 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
+ /**
+  * The main entry point
+  * @module react-typestyle
+  * @author Paul Brachmann
+  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
+  */
+
 import Cache from './internal/cache';
 import hoc, { ComponentOptions, InjectedProps, InputSheet, Options } from './internal/hoc';
 import Registry from './internal/registry';

@@ -1,6 +1,6 @@
 /**
  * The react-typestyle higher-order component
- * @file The main entry point
+ * @module react-typestyle/internal/hoc
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */

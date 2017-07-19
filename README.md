@@ -23,7 +23,7 @@ Just add a static ```styles``` field to your React component and wrap it in the 
 ### Example
 #### TypeScript
 ```typescript
-import withStyles, { InputSheet } from 'react-typestyle';
+import withStyles, { InjectedProps, InputSheet } from 'react-typestyle';
 
 interface Props {
   name: string;

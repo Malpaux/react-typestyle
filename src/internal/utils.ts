@@ -1,5 +1,5 @@
 /**
- * react-typestyle utils
+ * react-typestyle utilities
  * @module react-typestyle/internal/utils
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.

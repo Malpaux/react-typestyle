@@ -1,3 +1,10 @@
+/**
+ * The react-typestyle types
+ * @module react-typestyle/types
+ * @author Paul Brachmann
+ * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
+ */
+
 import { FreeStyle } from 'free-style';
 import { types } from 'typestyle';
 
