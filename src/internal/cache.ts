@@ -1,5 +1,5 @@
 /**
- * The react-typestyle styles cache
+ * Styles cache
  * @module react-typestyle/internal/cache
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
@@ -22,7 +22,7 @@ class Cache<P> extends Registry {
   /** Registered dynamic styles */
   protected dynamicStyles: XDynamicSheet<P> = {};
 
-  constructor(options: RegistryOptions) {
+  constructor(options?: RegistryOptions) {
     super(options);
 
     this.dynamicRegistry = new Registry(options);
@@ -39,6 +39,9 @@ class Cache<P> extends Registry {
     this.dynamicRegistry.off(this.update);
     this.dynamicRegistry.clear();
     this.dynamicRegistry.on(this.update);
+
+    // Clear static class names
+    this.classNames = {};
 
     // Clear main/static registry
     const patch = this.freeStyle;

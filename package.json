@@ -34,7 +34,8 @@
     "clean": "rimraf dist",
     "lint": "tslint --project tsconfig.json",
     "lint:fix": "tslint --project tsconfig.json --fix",
-    "test": "jest --env=jsdom"
+    "test": "jest --env=jsdom",
+    "test:coverage": "jest --env=jsdom --coverage"
   },
   "dependencies": {
     "free-style": "^2.3.1",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@types/enzyme": "^2.8.2",
     "@types/jest": "^20.0.2",
+    "@types/node": "^8.0.19",
     "@types/react": "^15.0.38",
     "enzyme": "^2.9.1",
     "jest": "^20.0.4",
@@ -69,6 +71,7 @@
     "transform": {
       ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "mapCoverage": true,
     "roots": [
       "<rootDir>/src/"
     ],

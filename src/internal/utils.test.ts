@@ -1,3 +1,9 @@
+/**
+ * @file Utilities test suite
+ * @author Paul Brachmann
+ * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
+ */
+
 import { DynamicSheet, StaticStyle, StyleGenerator } from '../types';
 import { dynamicExtend, processPlugins, processSheet, shallowCompare, splitSheet } from './utils';
 
@@ -38,6 +44,7 @@ describe('utilities', () => {
     expect(((dynamicExtend(
       ({ background }) => ({ background }),
       { color: '#fff' },
+      () => ({}),
     )) as StyleGenerator<{ background: string }>)({ background: '#f00' })).toEqual({
       background: '#f00',
       color: '#fff',

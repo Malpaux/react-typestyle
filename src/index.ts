@@ -5,7 +5,7 @@
  */
 
  /**
-  * The main entry point
+  * TypeStyle higher-order component for React
   * @module react-typestyle
   * @author Paul Brachmann
   * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.

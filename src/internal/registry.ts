@@ -1,5 +1,5 @@
 /**
- * The react-typestyle style registry
+ * Style registry
  * @module react-typestyle/internal/registry
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.

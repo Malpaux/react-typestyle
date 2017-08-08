@@ -1,3 +1,9 @@
+/**
+ * @file Higher-order component test suite
+ * @author Paul Brachmann
+ * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
+ */
+
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -98,9 +104,77 @@ describe('withStyles higher-order component', () => {
     expect(renderer.getStyles()).toBe('');
   });
 
-  // TODO: Test custom shouldStylesUpdate functions
+  it('should overwrite the input styles', () => {
+    BaseComponent.styles = {
+      div: {
+        position: 'relative',
+      },
+      root: {
+        background: '#000',
+        color: '#fff',
+      },
+    };
+
+    const WrappedComponent = withStyles({
+      renderer,
+      shouldStylesUpdate: () => true,
+    })(BaseComponent, { styles: {} });
+
+    const component = shallow(<WrappedComponent />);
+    expect(component.prop('classNames')).toEqual({});
+    expect(renderer.getStyles()).toBe('');
+
+    component.unmount();
+    expect(renderer.getStyles()).toBe('');
+  });
+
+  it('should use a custom shouldStylesUpdate function', () => {
+    interface Props {
+      color: string;
+      pos: {
+        x: number,
+        y: number,
+      };
+    }
+
+    BaseComponent.styles = {
+      div: ({ color, pos }: Props) => ({
+        color,
+        position: 'absolute',
+        transform: pos && `translate(${pos.x}px,${pos.y}px)`,
+      }),
+      root: {
+        background: '#000',
+      },
+    };
+
+    const WrappedComponent = withStyles({
+      renderer,
+      shouldStylesUpdate: () => false,
+    })(BaseComponent);
+
+    const component = shallow(<WrappedComponent />);
+    const classNames = component.prop('classNames');
+    expect(classNames).toHaveProperty('div');
+    expect(classNames).toHaveProperty('root');
+    expect(renderer.getStyles()).toBe(`.${classNames.root}{background:#000}.${
+      classNames.div}{position:absolute}`);
+
+    const classNames2 = component.setProps({
+      color: '#ff0000', pos: { x: 128, y: 0 },
+    }).prop('classNames');
+    expect(component.prop('color')).toBe('#ff0000');
+    expect(component.prop('pos')).toEqual({ x: 128, y: 0 });
+    expect(classNames2).toHaveProperty('div');
+    expect(classNames2).toHaveProperty('root');
+    expect(classNames2.root).toBe(classNames.root);
+    expect(classNames2.div).toBe(classNames.div);
+    expect(renderer.getStyles()).toBe(`.${classNames.root}{background:#000}.${
+      classNames.div}{position:absolute}`);
+
+    component.unmount();
+    expect(renderer.getStyles()).toBe('');
+  });
 
   // TODO: Test custom plugins
-
-  // TODO: Test styles overwrite
 });

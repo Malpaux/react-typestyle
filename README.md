@@ -138,6 +138,8 @@ Execute Jest unit tests using
 
 ```shell
 npm test
+
+npm run test:coverage
 ```
 
 Tests are defined in the same directory the module lives in. They are specified in '[module].test.js' files.

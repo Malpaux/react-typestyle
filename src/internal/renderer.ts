@@ -1,5 +1,5 @@
 /**
- * The react-typestyle style renderer
+ * Style renderer
  * @module react-typestyle/internal/renderer
  * @author Paul Brachmann
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
@@ -13,11 +13,13 @@ export interface Options extends RegistryOptions {
   tag?: StylesTarget;
 }
 
+export const getRequestAnimationFrame = () => typeof requestAnimationFrame === 'undefined' ?
+  setTimeout
+: requestAnimationFrame.bind(window);
+
 /** The react-typestyle style renderer */
 class Renderer extends Registry {
-  public static requestAnimationFrame = typeof requestAnimationFrame === 'undefined' ?
-    setTimeout
-  : requestAnimationFrame.bind(window);
+  public static requestAnimationFrame = getRequestAnimationFrame();
 
   /** Should a render tag be automatically generated */
   protected autoGenerateTag: boolean;
@@ -26,7 +28,7 @@ class Renderer extends Registry {
   /** Index for pending updates */
   protected pending = 0;
   /** The current render tag */
-  protected tag?: StylesTarget;
+  public tag?: StylesTarget;
 
   constructor({ autoGenerateTag, plugins, tag }: Options = {}) {
     super({ plugins });

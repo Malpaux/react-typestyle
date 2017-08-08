@@ -1,10 +1,16 @@
+/**
+ * @file Registry test suite
+ * @author Paul Brachmann
+ * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
+ */
+
 import Registry from './registry';
 
 describe('registry', () => {
   it('should create a new registry', () => {
     expect(new Registry());
     expect(new Registry({}));
-    expect(new Registry({ plugins:[] }));
+    expect(new Registry({ plugins: [] }));
   });
 
   it('should get an empty registry\'s styles', () => {
@@ -50,7 +56,7 @@ describe('registry', () => {
     expect(registry.clear().getStyles()).toBe('');
     expect(registry.toString()).toBe('');
 
-    const className5 = registry.style({ padding: 12 });
+    const className5 = registry.style({ $debugName: 'name', padding: 12 });
     const style5 = `.${className5}{padding:12px}`;
     expect(registry.getStyles()).toBe(style5);
     expect(registry.toString()).toBe(style5);
