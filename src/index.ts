@@ -17,13 +17,15 @@ import Registry from './internal/registry';
 import Renderer from './internal/renderer';
 import { dynamicExtend, shallowCompare } from './internal/utils';
 
-export { Cache, dynamicExtend, Registry, Renderer, shallowCompare };
+export { Cache, dynamicExtend as extend, Registry, Renderer, shallowCompare };
 
 import * as types from './types';
 export { ComponentOptions, InjectedProps, InputSheet, Options, types };
 
 /** The default styles renderer */
 export const defaultRenderer = new Renderer({ autoGenerateTag: true });
+const { getStyles } = defaultRenderer;
+export { getStyles };
 
 /** Higher-order component */
 const withStyles = ({

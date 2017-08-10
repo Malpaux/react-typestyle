@@ -66,9 +66,14 @@ class Renderer extends Registry {
   protected getTag(): StylesTarget | void {
     if (this.tag) return this.tag;
     if (this.autoGenerateTag) {
-      this.tag = document.createElement('style');
-      document.head.appendChild((this.tag as HTMLElement));
-      return this.tag;
+      const tag = typeof window === 'undefined' ?
+        { textContent: '' }
+      : document.createElement('style');
+
+      if (typeof document !== 'undefined') document.head.appendChild(tag as HTMLElement);
+
+      this.tag = tag;
+      return tag;
     }
   }
 

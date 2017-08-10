@@ -2,7 +2,7 @@
 
 [![wercker status](https://app.wercker.com/status/82d78fe58e6950eaf9236372ba412372/s/master "wercker status")](https://app.wercker.com/project/byKey/82d78fe58e6950eaf9236372ba412372)
 
-React-Typestyle provides a higher-order component to easily use [TypeStyle](http://typestyle.io/#/) to style your React components. It automatically handles dynamic style updates, caching and deduping across all components.
+React-TypeStyle provides a higher-order component to easily use [TypeStyle](http://typestyle.io/#/) to style your React components. It automatically handles dynamic style updates, caching and deduping across all components.
 
 
 ## Install
@@ -107,6 +107,47 @@ Used to check whether styles should to be rerendered. Defaults to a shallow comp
 #### ```componentOptions```
 - ```styles: InputSheet<Props>```  
 Alternative style sheet, overwrites ```styles``` field of wrapped component
+
+### Server Side Rendering
+Just like TypeStyle itself, React-TypeStyle can easily be used for server side rendering.
+
+```javascript
+import { getStyles } from 'react-typestyle';
+
+// Render the react app...
+
+// Render to CSS style tag
+const styleTag = `<style>${getStyles()}</style>`
+// ^ send this as a part of your HTML response
+```
+
+*Note: As React-TypeStyle uses a custom renderer under the hood, you can not use TypeStyle's ```getStyles()``` function.*
+
+### Utilities
+
+#### Dynamic Extend
+If you are using dynamic styles (your stylesheet includes functions), typestyle's standard ```extend``` won't work for you.  
+If you want to compose dynamic styles, use React-TypeStyle's dynamic ```extend``` instead.
+
+```javascript
+import { extend } from 'react-typestyle';
+
+// Compose styles
+const styles = extend(
+  ({ background }) => ({ background }),
+  { color: '#fff' },
+  () => ({}),
+);
+
+// Use them in the higher-order component
+class Component extends React.PureComponent {
+  static styles = {
+    root: styles,
+  };
+
+  render() {/* ... */}
+}
+```
 
 ## Developing
 

@@ -9,7 +9,6 @@ import { FreeStyle } from 'free-style';
 import { types } from 'typestyle';
 
 export interface ClassNames { [name: string]: string; }
-export interface InlineStyles { [name: string]: { [property: string]: any }; }
 
 export type StaticStyle = Partial<types.NestedCSSProperties>;
 export type StyleGenerator<P> = (props: P) => StaticStyle;
