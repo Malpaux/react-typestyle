@@ -76,10 +76,19 @@ describe('renderer', () => {
 
   it('should automatically create a render tag', () => {
     const renderer = new Renderer({ autoGenerateTag: true });
-
     const className = renderer.style({ color: '#fff' });
     const style = `.${className}{color:#fff}`;
     renderer.forceRenderStyles();
     expect((renderer.tag as StylesTarget).textContent).toBe(style);
+
+    (window as any).isServer = true;
+
+    const renderer2 = new Renderer({ autoGenerateTag: true });
+    const className2 = renderer2.style({ color: '#fff' });
+    const style2 = `.${className2}{color:#fff}`;
+    renderer2.forceRenderStyles();
+    expect((renderer2.tag as StylesTarget).textContent).toBe(style2);
+
+    delete (window as any).isServer;
   });
 });
