@@ -24,6 +24,18 @@ describe('entry point', () => {
       expect((lib as { [key: string]: any })[key]).toBeTruthy();
     });
   });
+
+  it('should replace the default style renderer', () => {
+    const className = lib.defaultRenderer.style({ color: '#fff' });
+    expect(lib.getStyles()).toBe(`.${className}{color:#fff}`);
+
+    expect(lib.setDefaultRenderer(new Renderer()));
+    expect(lib.defaultRenderer.getStyles()).toBe('');
+    expect(lib.getStyles()).toBe('');
+
+    const className2 = lib.defaultRenderer.style({ color: '#000' });
+    expect(lib.getStyles()).toBe(`.${className2}{color:#000}`);
+  });
 });
 
 describe('hoc factory', () => {

@@ -22,10 +22,17 @@ export { Cache, dynamicExtend as extend, Registry, Renderer, shallowCompare };
 import * as types from './types';
 export { ComponentOptions, InjectedProps, InputSheet, Options, types };
 
-/** The default styles renderer */
-export const defaultRenderer = new Renderer({ autoGenerateTag: true });
-const { getStyles } = defaultRenderer;
-export { getStyles };
+/** The default style renderer */
+export let defaultRenderer = new Renderer({ autoGenerateTag: true });
+/** Get styles export */
+export let getStyles = defaultRenderer.getStyles.bind(defaultRenderer);
+
+/** Replace the default style renderer */
+export const setDefaultRenderer = (renderer: Renderer): Renderer => {
+  defaultRenderer = renderer;
+  getStyles = defaultRenderer.getStyles.bind(defaultRenderer);
+  return defaultRenderer;
+};
 
 /** Higher-order component */
 const withStyles = ({
