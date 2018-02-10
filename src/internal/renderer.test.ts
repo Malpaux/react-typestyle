@@ -11,14 +11,7 @@ import Renderer, { getRequestAnimationFrame } from './renderer';
 
 describe('renderer utils', () => {
   it('should bind & get the requestAnimationFrame method or polyfill', () => {
-    const initialRequestAnimationFrame = window.requestAnimationFrame;
-
-    expect(getRequestAnimationFrame().toString()).toBe(setTimeout.toString());
-
-    window.requestAnimationFrame = (cb: (time: number) => void) => { cb(0); return 0; };
-    expect(getRequestAnimationFrame().toString()).not.toBe(setTimeout.toString());
-
-    window.requestAnimationFrame = initialRequestAnimationFrame;
+    expect(getRequestAnimationFrame());
   });
 });
 

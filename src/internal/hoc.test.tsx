@@ -4,7 +4,11 @@
  * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
  */
 
-import { shallow } from 'enzyme';
+import * as Enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
+
 import * as React from 'react';
 
 import withStyles, { StyledStatelessComponent } from './hoc';
@@ -25,7 +29,7 @@ describe('withStyles higher-order component', () => {
       shouldStylesUpdate: () => true,
     })(BaseComponent);
 
-    const classNames = shallow(<WrappedComponent />).prop('classNames');
+    const classNames = Enzyme.shallow(<WrappedComponent />).prop('classNames');
     expect(classNames).toEqual({});
     expect(renderer.getStyles()).toBe('');
   });
@@ -46,7 +50,7 @@ describe('withStyles higher-order component', () => {
       shouldStylesUpdate: () => true,
     })(BaseComponent);
 
-    const component = shallow(<WrappedComponent />);
+    const component = Enzyme.shallow(<WrappedComponent />);
     const classNames = component.prop('classNames');
     expect(classNames).toHaveProperty('div');
     expect(classNames).toHaveProperty('root');
@@ -82,7 +86,7 @@ describe('withStyles higher-order component', () => {
       shouldStylesUpdate: () => true,
     })(BaseComponent);
 
-    const component = shallow(<WrappedComponent />);
+    const component = Enzyme.shallow(<WrappedComponent />);
     const classNames = component.prop('classNames');
     expect(classNames).toHaveProperty('div');
     expect(classNames).toHaveProperty('root');
@@ -120,7 +124,7 @@ describe('withStyles higher-order component', () => {
       shouldStylesUpdate: () => true,
     })(BaseComponent, { styles: {} });
 
-    const component = shallow(<WrappedComponent />);
+    const component = Enzyme.shallow(<WrappedComponent />);
     expect(component.prop('classNames')).toEqual({});
     expect(renderer.getStyles()).toBe('');
 
@@ -153,7 +157,7 @@ describe('withStyles higher-order component', () => {
       shouldStylesUpdate: () => false,
     })(BaseComponent);
 
-    const component = shallow(<WrappedComponent />);
+    const component = Enzyme.shallow(<WrappedComponent />);
     const classNames = component.prop('classNames');
     expect(classNames).toHaveProperty('div');
     expect(classNames).toHaveProperty('root');

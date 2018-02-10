@@ -11,6 +11,9 @@
   * @license Copyright (c) 2017 Malpaux IoT All Rights Reserved.
   */
 
+import * as React from 'react';
+export { React as _react };
+
 import Cache from './internal/cache';
 import hoc, { ComponentOptions, InjectedProps, InputSheet, Options } from './internal/hoc';
 import Registry from './internal/registry';
@@ -35,14 +38,16 @@ export const setDefaultRenderer = (renderer: Renderer): Renderer => {
 };
 
 /** Higher-order component */
-const withStyles = ({
-  plugins,
-  renderer = defaultRenderer,
-  shouldStylesUpdate = shallowCompare,
-}: Partial<Options> = {
-  renderer: defaultRenderer,
-  shouldStylesUpdate: shallowCompare,
-}) =>
-  hoc({ plugins, renderer, shouldStylesUpdate });
+const withStyles = (options?: Partial<Options>) =>
+  options ?
+    hoc({
+      plugins: options.plugins || undefined,
+      renderer: options.renderer || defaultRenderer,
+      shouldStylesUpdate: options.shouldStylesUpdate || shallowCompare,
+    })
+  : hoc({
+    renderer: defaultRenderer,
+    shouldStylesUpdate: shallowCompare,
+  });
 
 export default withStyles;

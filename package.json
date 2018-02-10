@@ -42,10 +42,12 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.8",
+    "@types/enzyme-adapter-react-16": "^1.0.1",
     "@types/jest": "^22.1.2",
     "@types/node": "^9.4.4",
     "@types/react": "^16.0.36",
     "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.2.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -59,7 +61,7 @@
     "typestyle": "^1.7.1"
   },
   "peerDependencies": {
-    "react": "^16",
+    "react": "^15 || ^16",
     "typestyle": "^1.7.1"
   },
   "jest": {
