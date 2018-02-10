@@ -98,7 +98,7 @@ interface Props {
   theme: { color: string };
 }
 
-const Component: StyledStatelessComponent = ({ classNames, name }) => (
+const Component: StyledStatelessComponent<Props> = ({ classNames, name }) => (
   <div className={classNames.root}>
     <button className={classNames.button}>{name}</button>
   </div>

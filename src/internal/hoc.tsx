@@ -32,9 +32,8 @@ export interface ComponentOptions<P> {
   styles?: InputSheet<P>;
 }
 
-export interface StyledStatelessComponent<P = {}> extends React.StatelessComponent<P> {
-  styles?: InputSheet<P>;
-}
+export type StyledStatelessComponent<P = {}> = React.StatelessComponent<P & InjectedProps>
+  & ComponentOptions<P>;
 
 /** Higher-order component */
 const hoc = ({ plugins, renderer, shouldStylesUpdate }: Options) =>
