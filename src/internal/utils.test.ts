@@ -66,9 +66,9 @@ describe('utilities', () => {
       style: StaticStyle,
       _type: string,
       _renderer: any,
-      { duration }: { duration: number },
+      props?: { [key: string]: any },
     ) => {
-      style.transition = `all ${duration}ms`;
+      if (props) style.transition = `all ${props.duration}ms`;
       return style;
     };
 

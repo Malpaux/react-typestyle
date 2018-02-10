@@ -87,6 +87,63 @@ class Component extends React.PureComponent {
 export default withStyles()(Component);
 ```
 
+### Stateless Components
+#### TypeScript
+```typescript
+import withStyles, { InjectedProps, StyledStatelessComponent } from 'react-typestyle';
+
+interface Props {
+  name: string;
+  pos: { x: number, y: number };
+  theme: { color: string };
+}
+
+const Component: StyledStatelessComponent = ({ classNames, name }) => (
+  <div className={classNames.root}>
+    <button className={classNames.button}>{name}</button>
+  </div>
+);
+
+Component.styles = {
+  button: {
+    background: 'transparent',
+    border: 'none',
+  },
+  root: (props) => ({
+    color: props.theme.color,
+    position: 'absolute',
+    transform: `translate(${props.pos.x}px,${props.pos.y}px)`,
+  }),
+};
+
+export default withStyles()<Props>(Component);
+```
+
+#### JavaScript
+```javascript
+import withStyles from 'react-typestyle';
+
+const Component = ({ classNames, name }) => (
+  <div className={classNames.root}>
+    <button className={classNames.button}>{name}</button>
+  </div>
+);
+
+Component.styles = {
+  button: {
+    background: 'transparent',
+    border: 'none',
+  },
+  root: (props) => ({
+    color: props.theme.color,
+    position: 'absolute',
+    transform: `translate(${props.pos.x}px,${props.pos.y}px)`,
+  }),
+};
+
+export default withStyles()(Component);
+```
+
 ### Options
 You can pass in general options and options specific to the wrapped component.
 
@@ -126,7 +183,7 @@ const styleTag = `<style>${getStyles()}</style>`
 ### Utilities
 
 #### Dynamic Extend
-If you are using dynamic styles (your stylesheet includes functions), typestyle's standard ```extend``` won't work for you.  
+If you are using dynamic styles (your stylesheet includes functions), TypeStyle's standard ```extend``` won't work for you.  
 If you want to compose dynamic styles, use React-TypeStyle's dynamic ```extend``` instead.
 
 ```javascript
