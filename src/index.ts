@@ -15,7 +15,13 @@ import * as React from 'react';
 export { React as _react };
 
 import Cache from './internal/cache';
-import hoc, { ComponentOptions, InjectedProps, InputSheet, Options } from './internal/hoc';
+import hoc, {
+  ComponentOptions,
+  InjectedProps,
+  InputSheet,
+  Options,
+  StyledStatelessComponent,
+} from './internal/hoc';
 import Registry from './internal/registry';
 import Renderer from './internal/renderer';
 import { dynamicExtend, shallowCompare } from './internal/utils';
@@ -23,7 +29,7 @@ import { dynamicExtend, shallowCompare } from './internal/utils';
 export { Cache, dynamicExtend as extend, Registry, Renderer, shallowCompare };
 
 import * as types from './types';
-export { ComponentOptions, InjectedProps, InputSheet, Options, types };
+export { ComponentOptions, InjectedProps, InputSheet, Options, StyledStatelessComponent, types };
 
 /** The default style renderer */
 export let defaultRenderer = new Renderer({ autoGenerateTag: true });
